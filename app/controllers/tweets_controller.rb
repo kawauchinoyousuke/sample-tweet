@@ -16,7 +16,11 @@ class TweetsController < ApplicationController
   def new
     @tweet = Tweet.new
   end
-
+  
+  def confirm
+    @tweet = Tweet.new(tweet_params)
+  end
+  
   # GET /tweets/1/edit
   def edit
   end
@@ -60,15 +64,15 @@ class TweetsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+ 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_tweet
+  def set_tweet
       @tweet = Tweet.find(params[:id])
-    end
+  end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def tweet_params
+  def tweet_params
       params.require(:tweet).permit(:content)
-    end
+  end
 end
